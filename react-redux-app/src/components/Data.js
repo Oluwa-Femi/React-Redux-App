@@ -8,17 +8,17 @@ const Data = (props) => {
         axios
             .get(props.url)
             .then(res =>{
-                console.log(res.data)
+                //console.log(res.data)
                 setPokemon(res.data)
             })
-    }, []
+    }, [props.url]
     )
 
 
     return(
         <div>
             <p>{pokemon.name}</p>
-            {pokemon.sprites && pokemon.sprites.front_shiny && <img src={pokemon.sprites.back_shiny} alt="pokemon"></img>}
+            {pokemon.sprites && pokemon.sprites.front_shiny && <img src={pokemon.sprites.front_shiny} alt="pokemon"></img>}
         </div>
     )
 
