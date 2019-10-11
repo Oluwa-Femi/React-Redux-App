@@ -11,13 +11,20 @@ const DataList = (props) => {
     }, [])
 
     console.log(props.pokemon)
-
+    let backArrow = "<"
     return (
-        <div style={{display: "flex", flexDirection: "row", width: 600, flexWrap: "wrap", margin: "0 auto"}}>
-            {props.pokemon.map(pokemon => {
-                return <Data pokemon={pokemon} url={pokemon.url}/>
-            })}
-            <button onClick={() => props.nextPokemon(props.url)}>Next</button>
+        <div>
+            <div style={{display: "flex", flexDirection: "row", width: 600, flexWrap: "wrap", margin: "0 auto"}}>
+                {props.pokemon.map(pokemon => {
+                    return <Data pokemon={pokemon} url={pokemon.url}/>
+                })}
+
+
+            </div>
+            <div style={{display: "flex", justifyContent: "space-evenly", width: 300, margin: "0 auto"}}>
+                <button onClick={() => props.nextPokemon(props.lastURL)}> {backArrow} </button>
+                <button onClick={() => props.nextPokemon(props.nextURL)}> > </button>
+            </div>
         </div>
     )
 }
@@ -25,7 +32,8 @@ const DataList = (props) => {
 const mapStateToProps = (state) => {
     return {
         pokemon: state.pokemon,
-        url: state.url
+        nextURL: state.nextURL,
+        lastURL: state.lastURL
     }
 }
 
